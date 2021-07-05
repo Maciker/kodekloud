@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-replicaset
+  labels:
+    app: myapp
+    type: front-end
+spec:
+  template:
+    metadata:
+      name: myapp-pod
+      labels:
+        app: myapp
+        type: front-end
+    spec:
+      containers:
+        - name: nginx-container
+          image: nginx
+  replicas: 3
+  selector: 
+    matchLabels:
+      type: front-end
+
+# To run the deployment:
+# kubectl create -f deployment-definition.yaml
+# To see it: kubectl get deployments
+# The deployment automatically create a replicaset
+# To see it: kubectl get replicaset
+# And the replicaset create the pods: kubectl get pods
+# kubectl get all to see everything together
+# For rolling updates: edit the file and
+# kubectl apply -f deployment-definition.yaml
+# To see the status or history: kubectl rollout status or history
