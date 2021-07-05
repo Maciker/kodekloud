@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp-service
+spec:
+  type: NodePort
+  ports:
+    - targetPort: 80
+      port: 80
+      nodePort: 30008 # Valid range: 30000 - 32767
+  selector:
+    app: myapp
+    type: front-end
+
+# Run the service: kubectl create -f service-definition.yaml
+# To see it: kubectl get services
+# Probe the service. curl http://IP:port
