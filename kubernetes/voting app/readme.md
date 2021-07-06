@@ -1,1 +1,1 @@
-# yaml from the voting app example
+# Voting app example: pods, services and deployments
